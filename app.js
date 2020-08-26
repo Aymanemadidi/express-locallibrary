@@ -16,7 +16,8 @@ app.use(helmet());
 
 //Set up mongoose connection
 let mongoose = require('mongoose');
-let mongoDB = 'mongodb://aymanelmadidi:locallibraryalgtop1@cluster0-shard-00-00.6d4bv.mongodb.net:27017,cluster0-shard-00-01.6d4bv.mongodb.net:27017,cluster0-shard-00-02.6d4bv.mongodb.net:27017/local_library?ssl=true&replicaSet=atlas-kuqv67-shard-0&authSource=admin&retryWrites=true&w=majority'
+let dev_db_url = 'mongodb://aymanelmadidi:locallibraryalgtop1@cluster0-shard-00-00.6d4bv.mongodb.net:27017,cluster0-shard-00-01.6d4bv.mongodb.net:27017,cluster0-shard-00-02.6d4bv.mongodb.net:27017/local_library?ssl=true&replicaSet=atlas-kuqv67-shard-0&authSource=admin&retryWrites=true&w=majority'
+let mongoDB = process.env.MONGODB_URI || dev_db_url;
 //let mongoDB = 'mongodb+srv://aymanelmadidi:locallibraryalgtop1@cluster0.6d4bv.mongodb.net/local_library?retryWrites=true&w=majority';
 mongoose.connect(mongoDB, { useNewUrlParser: true , useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
 let db = mongoose.connection;
